@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "grpc_curd/users/proto";
+
+message ProtoUser {
+
+     string ProtoID = 1;
+     string ProtoName = 2;
+     string ProtoEmail = 3;
+     string ProtoPassword = 4;
+     string ProtoPhoneno = 5;
+     string ProtoAddress = 6;
+
+}
+
+message ProtoCreateRequest {
+    ProtoUser req = 1;
+}
+
+message ProtoCreateReponse {
+    ProtoUser res = 1;
+}
+
+message ProtoGetRequest {
+    string ProtoEmail = 1;
+    string ProtoPassword = 2;
+}
+
+message ProtoGetResponse {
+    ProtoUser res = 1;
+}
+
+message ProtoDeleteRequest {
+    string ProtoEmail = 1;
+    string ProtoPassword = 2;
+}
+
+message ProtoDeleteResponse {
+    string protoemail = 1;
+}
+
+message ProtoUpdateRequest {
+    ProtoUser updatereq = 1;
+}
+
+message ProtoUpdateResponse {
+    ProtoUser updateres = 1;
+}
+
+service UserService{
+    rpc CreateUser(ProtoCreateRequest) returns (ProtoCreateReponse);
+    rpc GetUser(ProtoGetRequest) returns (ProtoGetResponse);
+    rpc GetDelete(ProtoDeleteRequest) returns (ProtoDeleteResponse);
+    rpc UpdateUser(ProtoUpdateRequest) returns (ProtoUpdateResponse);
+}
